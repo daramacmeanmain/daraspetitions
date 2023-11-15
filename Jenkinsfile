@@ -22,7 +22,7 @@ pipeline {
 
         stage ('Archive') {
             steps {
-                archiveArtifacts allowEmptyASrchive: true,
+                archiveArtifacts allowEmptyArchive: true,
                     artifacts: '**/daraspetitions*.war'
             }
         }
