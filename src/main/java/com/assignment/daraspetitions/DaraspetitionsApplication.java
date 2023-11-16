@@ -2,6 +2,8 @@ package com.assignment.daraspetitions;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,13 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class DaraspetitionsApplication {
 
 	@RequestMapping("/")
-	public String index() {
+	public String indexForm(Model model) {
+
+		model.addAttribute("index", new Index());
 
 		return "/index.html";
 	}
 
-	@RequestMapping("/hello")
-	public String hello2() {
+	@RequestMapping("/petition")
+	public String petitionForm(@ModelAttribute Petition petition, Model model) {
+		model.addAttribute("petition", petition);
 		return "Hello Again";
 	}
 
