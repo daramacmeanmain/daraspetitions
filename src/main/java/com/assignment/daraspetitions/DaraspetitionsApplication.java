@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class DaraspetitionsApplication {
 
 	@RequestMapping("/")
-	public String hello1() {
-		return "Hello";
+	public String index() {
+
+		return "/index.html";
 	}
 
 	@RequestMapping("/hello")
