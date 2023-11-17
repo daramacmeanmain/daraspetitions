@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DaraspetitionsApplication {
 
-	@RequestMapping("/")
+	@RequestMapping("/index")
 	public String indexForm(Model model) {
 
-		model.addAttribute("index", new Index());
+		model.addAttribute("index", new Petition());
 
-		return "/index.html";
+		return "index";
 	}
 
-	@RequestMapping("/petition")
+	@RequestMapping("/index")
 	public String petitionForm(@ModelAttribute Petition petition, Model model) {
-		model.addAttribute("petition", petition);
-		return "Hello Again";
+		model.addAttribute("index", petition);
+		return "petition";
 	}
 
 	public static void main(String[] args) {
