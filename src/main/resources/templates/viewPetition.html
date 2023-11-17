@@ -6,7 +6,8 @@
 </head>
 <body>
     <h1>Your petition</h1>
-    <p th:text="'title: ' + ${index.title}" />
-    <p th:text="'description: ' + ${index.description}" />
+    <p th:text="'title: ' + ${newPetition.title}" />
+    <p th:text="'description: ' + ${newPetition.description}" />
+    <a th:href="@{/}">Home</a>
 </body>
 </html>

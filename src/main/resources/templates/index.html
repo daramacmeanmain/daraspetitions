@@ -6,10 +6,7 @@
 </head>
 <body>
 <h1>Create Petition</h1>
-<form action="#" th:action="@{/index}" th:object="${index}" method="post">
-    <p>Title: <input type="text" th:field="*{title}"> </p>
-    <p>Description: <input type="text" th:field="*{description}"> </p>
-    <p><input type="submit" value="Submit" /></p>
-</form>
+    <a th:href="@{/newPetition}">Make a new petition</a>
+    <a href="viewPetition.html">View existing petition</a>
 </body>
 </html>
