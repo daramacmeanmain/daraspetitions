@@ -6,7 +6,8 @@
 </head>
 <body>
 <h1>Your petition</h1>
-<p th:text="'title: ' + ${petitionList.get(id)}" />
+<p th:text="${petitionList.get(id).getTitle()}" />
+<p th:text="${petitionList.get(id).getDescription()}" />
 <a th:href="@{/}">Home</a>
 </body>
 </html>

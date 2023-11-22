@@ -30,9 +30,9 @@ public class PetitionController {
         model.addAttribute("petition", petition);
         petition.setId(count);
         petitionList.add(petition);
-        System.out.println(petitionList.toString());
+        System.out.println(petitionList.get(0).getDescription());
         count++;
-        return "viewPetition";
+        return "redirect:/";
     }
 
     @RequestMapping("/viewPetition/")
