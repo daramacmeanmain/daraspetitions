@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Your petition</h1>
-    <p th:text="'title: ' + ${newPetition.title}" />
-    <p th:text="'description: ' + ${newPetition.description}" />
-    <a th:href="@{/}">Home</a>
+<h1>Your petition</h1>
+<p th:text="'title: ' + ${petition.title}" />
+<p th:text="'description: ' + ${petition.description}" />
+<a th:href="@{/}">Home</a>
 </body>
 </html>

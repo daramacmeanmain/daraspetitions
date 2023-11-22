@@ -29,4 +29,14 @@ public class Petition {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void incrementID(){
+        this.setId(id);
+        id++;
+    }
+
+    @Override
+    public String toString() {
+        return this.getId() + "Petition Title: " + this.getTitle() + "/nPetition Description: " + this.getDescription();
+    }
 }
