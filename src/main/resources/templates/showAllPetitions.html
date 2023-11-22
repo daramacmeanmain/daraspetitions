@@ -8,14 +8,9 @@
 <h1>Your petition</h1>
 <table th:each="petition : ${petitionList}">
     <tr>
-        <td th:text="'Petition Id: '+ ${petition.id}"></td>
-    </tr>
-    <tr>
-        <td th:text="'Petition Title: '+ ${petition.title}"></td>
-    </tr>
-    <tr>
-        <td th:text="'Petition Description: '+ ${petition.description}"></td>
+        <a th:href="@{/viewPetition/(id=${petition.id})}" th:text="'Petition Title: '+ ${petition.title}"></a>
     </tr>
 </table>
+<a th:href="@{/}">Home</a>
 </body>
 </html>

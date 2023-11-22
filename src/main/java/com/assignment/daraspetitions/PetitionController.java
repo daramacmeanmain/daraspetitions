@@ -19,10 +19,10 @@ public class PetitionController {
         return "newPetition";
     }
 
-    @GetMapping("/showPetition")
-    public String viewPetitions(Model model) {
+    @GetMapping("/showAllPetitions")
+    public String viewAllPetitions(Model model) {
         model.addAttribute("petitionList", petitionList);
-        return "showPetition";
+        return "showAllPetitions";
     }
 
     @PostMapping("/newPetition")
@@ -35,9 +35,11 @@ public class PetitionController {
         return "viewPetition";
     }
 
-    @PostMapping("/showPetition/{id}")
-    public String petitionById(Model model) {
+    @RequestMapping("/viewPetition/")
+    public String petitionById(@RequestParam(value="id", required = false) Integer id,  Model model) {
+        model.addAttribute("id", id);
         model.addAttribute("petitionList", petitionList);
+        System.out.println("HELLO" + id);
         return "viewPetition";
     }
 
