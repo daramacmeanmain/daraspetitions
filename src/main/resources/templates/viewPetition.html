@@ -8,6 +8,12 @@
 <h1>Your petition</h1>
 <p th:text="${petitionList.get(id).getTitle()}" />
 <p th:text="${petitionList.get(id).getDescription()}" />
+<p th:text="'Number of signatures: ' + ${petitionList.get(id).getSignatureCount()}" />
+<form action="#" th:action="@{/signPetition/(id=${petitionList.get(id).getId()})}" th:object="${user}" method="post">
+    <p>Title: <input type="text" th:field="*{name}"> </p>
+    <p>Description: <input type="text" th:field="*{email}"> </p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
 <a th:href="@{/}">Home</a>
 </body>
 </html>

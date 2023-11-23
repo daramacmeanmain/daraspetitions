@@ -3,6 +3,7 @@ package com.assignment.daraspetitions;
 public class Petition {
 
     private int id;
+    private int signatureCount;
     private String title;
     private String description;
 
@@ -12,6 +13,14 @@ public class Petition {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getSignatureCount() {
+        return signatureCount;
+    }
+
+    public void setSignatureCount(int signatureCount) {
+        this.signatureCount = signatureCount;
     }
 
     public String getTitle() {
