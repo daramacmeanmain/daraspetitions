@@ -13,6 +13,16 @@ public class PetitionController {
     List<Petition> petitionList = new ArrayList<>();
     int count = 0;
 
+    public int findByTitle(String title){
+        for (Petition p : petitionList){
+            if(p.getTitle().equals(title)){
+                return p.getId();
+            }
+        }
+
+        return -1;
+    }
+
     @GetMapping("/newPetition")
     public String petitionForm(Model model) {
         model.addAttribute("newPetition", new Petition());
@@ -40,6 +50,25 @@ public class PetitionController {
         model.addAttribute("id", id);
         model.addAttribute("petitionList", petitionList);
         System.out.println("HELLO" + id);
+        return "viewPetition";
+    }
+
+    @GetMapping("/searchPetitions")
+    public String searchSubmit(Model model) {
+        //model.addAttribute("searchPetition");
+        return "searchPetitions";
+    }
+
+    @RequestMapping("/searchPetitions/")
+    public String petitionByTitle(@RequestParam(value="title", required = false) String title, Model model) {
+        model.addAttribute("title", title);
+
+        int id = findByTitle(title);
+        model.addAttribute("id", id);
+
+        model.addAttribute("petitionList", petitionList);
+        System.out.println("HELLO" + title);
+        System.out.println("Index is " + findByTitle(title));
         return "viewPetition";
     }
 
