@@ -13,9 +13,7 @@ pipeline {
 
         stage('Build') {
             when {
-                anyOf {
-                    expression { params.CONFIRM = true }
-                }
+                expression { params.CONFIRM = true }
             }
             steps {
                 sh "mvn clean:clean"
