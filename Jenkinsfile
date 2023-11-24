@@ -30,10 +30,16 @@ pipeline {
         stage ('Deploy') {
             steps {
                 sh 'docker build -f Dockerfile -t myapp . '
+            }
                 sh 'docker kill mycontainer'
                 sh 'docker rm mycontainer'
                 sh 'docker run --name "mycontainer" -p 9090:8080 --detach myapp:latest'
             }
         }
+
+        Post {
+            Failure {
+                sh 'docker run --name "mycontainer" -p 9090:8080 --detach myapp:latest'
+            }
     }
 }
