@@ -6,15 +6,15 @@ pipeline {
 
     stages {
         stage('GetProject') {
+            when {
+                expression { params.CONFIRM == true }
+            }
             steps {
                 git 'https://github.com/daramacmeanmain/daraspetitions.git'
             }
         }
 
         stage('Build') {
-            when {
-                expression { params.CONFIRM == true }
-            }
             steps {
                 sh "mvn clean:clean"
             }
