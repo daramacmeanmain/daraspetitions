@@ -13,7 +13,7 @@ pipeline {
 
         stage('Build') {
             when {
-                expression { params.CONFIRM = true }
+                expression { params.CONFIRM == true }
             }
             steps {
                 sh "mvn clean:clean"
