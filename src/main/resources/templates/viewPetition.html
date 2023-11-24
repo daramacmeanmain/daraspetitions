@@ -8,15 +8,19 @@
 </head>
 <body class="container">
 <h1>Your Petition</h1>
-<h6 th:text="'Number of signatures: ' + ${petitionList.get(id).getSignatureCount()}"  />
-<p th:text="${petitionList.get(id).getTitle()}" />
+<h6 th:text="'Number of signatures: ' + ${petitionList.get(id).getSignatureCount()}"  /> <br>
+<h5 th:text="${petitionList.get(id).getTitle()}" />
 <p th:text="${petitionList.get(id).getDescription()}" />
-<h3>Sign Below</h3>
+<!-- <p th:text="${signList.get(id).getDescription()}" /> -->
+<h6>Sign Below</h6>
 <form action="#" th:action="@{/signPetition/(id=${petitionList.get(id).getId()})}" th:object="${user}" method="post">
-    <p>Name: <input type="text" th:field="*{name}"> </p>
-    <p>E-Mail: <input type="text" th:field="*{email}"> </p>
+    <p>Name: <input type="text" th:field="*{name}"> E-Mail: <input type="email" th:field="*{email}"> </p>
     <p><input type="submit" value="Submit" /></p>
 </form>
+<h6>Users that have signed this petition</h6>
+<table th:each="user : ${userSign.get(id)}">
+    <tr th:text="${user.getName()}"></tr>
+</table>
 <a th:href="@{/}">Home</a>
 </body>
 </html>
