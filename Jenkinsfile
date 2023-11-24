@@ -6,11 +6,6 @@ pipeline {
 
     stages {
         stage('GetProject') {
-            when {
-                anyOf {
-                    expression { params.CONFIRM = true }
-                }
-            }
             steps {
                 git 'https://github.com/daramacmeanmain/daraspetitions.git'
             }
