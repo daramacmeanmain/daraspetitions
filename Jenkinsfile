@@ -59,9 +59,5 @@ pipeline {
             sh 'docker rm daraspetitions_container'
             sh 'docker run --name "daraspetitions_container" -p 9090:8080 --detach myapp:latest'
         }
-
-        success {
-            echo "Running App"
-        }
     }
 }
