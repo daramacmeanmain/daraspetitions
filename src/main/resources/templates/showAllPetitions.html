@@ -7,12 +7,12 @@
     <title>Title</title>
 </head>
 <body class="container">
-<h1>All Petitions</h1>
+<h1><a th:href="@{/}">Dara's Petitions</a></h1>
+<h3>All Petitions</h3>
 <table th:each="petition : ${petitionList}">
     <tr>
-        <a th:href="@{/viewPetition/(id=${petition.id})}" th:text="'Petition Title: '+ ${petition.title}"></a>
+        <a th:href="@{/viewPetition/(id=${petition.id})}" th:text="${petition.title}"></a>
     </tr>
 </table>
-<a th:href="@{/}">Home</a>
 </body>
 </html>
