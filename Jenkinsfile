@@ -15,18 +15,27 @@ pipeline {
         }
 
         stage('Build') {
+            when {
+                expression { params.CONFIRM == true }
+            }
             steps {
                 sh "mvn clean:clean"
             }
         }
 
         stage('Package') {
+            when {
+                expression { params.CONFIRM == true }
+            }
             steps {
                 sh "mvn package"
             }
         }
 
         stage ('Archive') {
+            when {
+                expression { params.CONFIRM == true }
+            }
             steps {
                 archiveArtifacts allowEmptyArchive: true,
                     artifacts: '**/daraspetitions*.war'
@@ -34,6 +43,9 @@ pipeline {
         }
 
         stage ('Deploy') {
+            when {
+                expression { params.CONFIRM == true }
+            }
             steps {
                 sh 'docker build -f Dockerfile -t myapp . '
                 sh 'docker kill mycontainer'
