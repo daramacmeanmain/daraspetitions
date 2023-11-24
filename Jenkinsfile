@@ -1,7 +1,6 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'USERNAME', defaultValue: 'Dara', description: 'Input username')
         booleanParam(name: 'CONFIRM', description: 'Would you like to build this project?')
     }
 
@@ -9,7 +8,6 @@ pipeline {
         stage('GetProject') {
             when {
                 anyOf {
-                    expression { params.USERNAME = 'Dara' }
                     expression { params.CONFIRM = true }
                 }
             }
