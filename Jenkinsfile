@@ -48,16 +48,16 @@ pipeline {
             }
             steps {
                 sh 'docker build -f Dockerfile -t myapp . '
-                sh 'docker kill mycontainer'
-                sh 'docker rm mycontainer'
-                sh 'docker run --name "mycontainer" -p 9090:8080 --detach myapp:latest'
+                sh 'docker run --name "daraspetitions_container" -p 9090:8080 --detach myapp:latest'
             }
         }
     }
 
     post {
         failure {
-            sh 'docker run --name "mycontainer" -p 9090:8080 --detach myapp:latest'
+            sh 'docker kill daraspetitions_container'
+            sh 'docker rm daraspetitions_container'
+            sh 'docker run --name "daraspetitions_container" -p 9090:8080 --detach myapp:latest'
         }
 
         success {
