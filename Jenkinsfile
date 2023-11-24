@@ -37,7 +37,7 @@ pipeline {
         }
     }
 
-    Post {
+    post {
         failure {
             sh 'docker run --name "mycontainer" -p 9090:8080 --detach myapp:latest'
         }
