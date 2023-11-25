@@ -17,6 +17,8 @@ public class PetitionController {
 
     //method for searching by title
     public List<Petition> findByTitle(String title){
+
+        //create a new list that each returned petition will be added to
         List<Petition> searchList = new ArrayList<>();
         for (Petition p : petitionList){
             if(p.getTitle().toLowerCase().equalsIgnoreCase(title)){
@@ -48,7 +50,6 @@ public class PetitionController {
         petition.setSignatureCount(numOfSigns);
         petition.setId(count);
         petitionList.add(petition);
-        //System.out.println(petitionList.get(0).getDescription() + petitionList.get(0).getId() + petitionList.get(0).getSignatureCount());
         count++;
         return "redirect:/";
     }
@@ -61,7 +62,7 @@ public class PetitionController {
 
     //post the petition signature
     @PostMapping("/signPetition/")
-    public String petitionSignature(@RequestParam(value="id", required = false) @ModelAttribute Integer id, User user, Petition petition, Model model){
+    public String petitionSignature(@RequestParam(value="id", required = false) @ModelAttribute Integer id, User user, Model model){
         model.addAttribute("userSign", userSign);
         model.addAttribute("id", id);
         model.addAttribute("user", user);
@@ -74,7 +75,7 @@ public class PetitionController {
 
     //retrieve the petition based on id
     @RequestMapping("/viewPetition/")
-    public String petitionById(@RequestParam(value="id", required = false) Integer id, Petition petition,  Model model) {
+    public String petitionById(@RequestParam(value="id", required = false) Integer id,  Model model) {
         model.addAttribute("userSign", userSign);
         model.addAttribute("id", id);
         model.addAttribute("petitionList", petitionList);
@@ -84,7 +85,7 @@ public class PetitionController {
 
     // return the petition search
     @GetMapping("/searchPetitions")
-    public String searchSubmit(Model model) {
+    public String searchSubmit() {
         return "searchPetitions";
     }
 
@@ -94,7 +95,9 @@ public class PetitionController {
         model.addAttribute("userSign", userSign);
         model.addAttribute("title", title);
         model.addAttribute("user", new User());
+
         List<Petition> searchList = findByTitle(title);
+
         model.addAttribute("searchList", searchList);
         model.addAttribute("petitionList", petitionList);
         return "searchResult";

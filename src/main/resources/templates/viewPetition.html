@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body class="container">
-<h1><a th:href="@{/}">Dara's Petitions</a></h1>
-<h3>Your Petition</h3>
-<h6 th:text="'Number of signatures: ' + ${petitionList.get(id).getSignatureCount()}"  /> <br>
-<h5 th:text="${petitionList.get(id).getTitle()}" />
-<p th:text="${petitionList.get(id).getDescription()}" />
-<!-- <p th:text="${signList.get(id).getDescription()}" /> -->
-<h6>Sign Below</h6>
-<form name="signForm" action="#" th:action="@{/signPetition/(id=${petitionList.get(id).getId()})}" th:object="${user}" method="post">
-    <p>Name: <input type="text" th:field="*{name}"> E-Mail: <input type="email" th:field="*{email}"> </p>
-    <p><input type="submit" value="Submit"/></p>
-</form>
-<h6>Users that have signed this petition</h6>
-<table th:each="user : ${userSign.get(id)}">
-    <a th:href="'mailto:' + ${user.getEmail()}" th:text="${user.getName()}"></a>
-</table>
-</body>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <meta charset="UTF-8">
+        <title>Petition</title>
+    </head>
+    <body class="container">
+        <h1><a th:href="@{/}">Dara's Petitions</a></h1>
+        <h3>Petition</h3>
+        <h6 th:text="'Number of signatures: ' + ${petitionList.get(id).getSignatureCount()}"  /> <br>
+        <h5 th:text="${petitionList.get(id).getTitle()}" />
+        <p th:text="${petitionList.get(id).getDescription()}" />
+        <h6>Sign Below</h6>
+        <form name="signForm" action="#" th:action="@{/signPetition/(id=${petitionList.get(id).getId()})}" th:object="${user}" method="post">
+            <p>Name: <input type="text" th:field="*{name}"> E-Mail: <input type="email" th:field="*{email}"> </p>
+            <p><input type="submit" value="Submit"/></p>
+        </form>
+        <h6>Users that have signed this petition</h6>
+        <table th:each="user : ${userSign.get(id)}">
+            <a th:href="'mailto:' + ${user.getEmail()}" th:text="${user.getName()}"></a>
+        </table>
+    </body>
 </html>
