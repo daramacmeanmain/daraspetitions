@@ -16,14 +16,15 @@ public class PetitionController {
     int numOfSigns = 0;
 
     //method for searching by title
-    public int findByTitle(String title){
+    public List<Petition> findByTitle(String title){
+        List<Petition> searchList = new ArrayList<>();
         for (Petition p : petitionList){
-            if(p.getTitle().equals(title)){
-                return p.getId();
+            if(p.getTitle().toLowerCase().equalsIgnoreCase(title)){
+                searchList.add(p);
             }
         }
 
-        return -1;
+        return searchList;
     }
 
     //get the petition creation
@@ -93,10 +94,10 @@ public class PetitionController {
         model.addAttribute("userSign", userSign);
         model.addAttribute("title", title);
         model.addAttribute("user", new User());
-        int id = findByTitle(title);
-        model.addAttribute("id", id);
+        List<Petition> searchList = findByTitle(title);
+        model.addAttribute("searchList", searchList);
         model.addAttribute("petitionList", petitionList);
-        return "viewPetition";
+        return "searchResult";
     }
 
 }
