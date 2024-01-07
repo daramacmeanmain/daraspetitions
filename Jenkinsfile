@@ -31,10 +31,10 @@ pipeline {
             input {
                 message "Would you like to deploy?"
                 ok "Deploy"
-                steps {
-                    sh 'docker build -f Dockerfile -t myapp . '
-                    sh 'docker run --name "daraspetitions_container" -p 9090:8080 --detach myapp:latest'
-                }
+            }
+            steps {
+                sh 'docker build -f Dockerfile -t myapp . '
+                sh 'docker run --name "daraspetitions_container" -p 9090:8080 --detach myapp:latest'
             }
         }
     }
