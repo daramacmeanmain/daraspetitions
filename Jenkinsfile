@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    parameters {
-        booleanParam(name: 'CONFIRM', description: 'Would you like to deploy this project?')
-    }
 
     stages {
         stage('GetProject') {
@@ -31,12 +28,13 @@ pipeline {
         }
 
         stage ('Deploy') {
-            when {
-                expression { params.CONFIRM == true }
-            }
-            steps {
-                sh 'docker build -f Dockerfile -t myapp . '
-                sh 'docker run --name "daraspetitions_container" -p 9090:8080 --detach myapp:latest'
+            input {
+                message "Would you like to deploy?"
+                ok "Deploy"
+                steps {
+                    sh 'docker build -f Dockerfile -t myapp . '
+                    sh 'docker run --name "daraspetitions_container" -p 9090:8080 --detach myapp:latest'
+                }
             }
         }
     }
