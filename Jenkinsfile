@@ -1,41 +1,29 @@
 pipeline {
     agent any
     parameters {
-        booleanParam(name: 'CONFIRM', description: 'Would you like to build this project?')
+        booleanParam(name: 'CONFIRM', description: 'Would you like to deploy this project?')
     }
 
     stages {
         stage('GetProject') {
-            when {
-                expression { params.CONFIRM == true }
-            }
             steps {
                 git 'https://github.com/daramacmeanmain/daraspetitions.git'
             }
         }
 
         stage('Build') {
-            when {
-                expression { params.CONFIRM == true }
-            }
             steps {
                 sh "mvn clean:clean"
             }
         }
 
         stage('Package') {
-            when {
-                expression { params.CONFIRM == true }
-            }
             steps {
                 sh "mvn package"
             }
         }
 
         stage ('Archive') {
-            when {
-                expression { params.CONFIRM == true }
-            }
             steps {
                 archiveArtifacts allowEmptyArchive: true,
                     artifacts: '**/daraspetitions*.war'
